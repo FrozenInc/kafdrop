@@ -88,7 +88,7 @@ public final class MessageController {
    * @param model
    * @return View for seeing all messages in a topic sorted by timestamp.
    */
-  @GetMapping("/topic/{name:.+}/allmessages")
+  @GetMapping("./topic/{name:.+}/allmessages")
   public String viewAllMessages(@PathVariable("name") String topicName,
                                 Model model, @RequestParam(name = "count", required = false) Integer count) {
     final int size = (count != null? count : 100);
@@ -131,7 +131,7 @@ public final class MessageController {
    * @param model
    * @return View for seeing messages in a partition.
    */
-  @GetMapping("/topic/{name:.+}/messages")
+  @GetMapping("./topic/{name:.+}/messages")
   public String viewMessageForm(@PathVariable("name") String topicName,
                                 @Valid @ModelAttribute("messageForm") PartitionOffsetInfo messageForm,
                                 BindingResult errors,
@@ -211,7 +211,7 @@ public final class MessageController {
       @ApiResponse(code = 200, message = "Success", response = List.class),
       @ApiResponse(code = 404, message = "Invalid topic name")
   })
-  @RequestMapping(method = RequestMethod.GET, value = "/topic/{name:.+}/messages", produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(method = RequestMethod.GET, value = "./topic/{name:.+}/messages", produces = MediaType.APPLICATION_JSON_VALUE)
   public @ResponseBody
   List<Object> getPartitionOrMessages(
       @PathVariable("name") String topicName,

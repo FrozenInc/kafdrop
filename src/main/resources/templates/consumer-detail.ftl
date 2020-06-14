@@ -13,7 +13,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<#import "/spring.ftl" as spring />
+<#import "./spring.ftl" as spring />
 <#import "lib/template.ftl" as template>
 <@template.header "Consumer: ${consumer.groupId}"/>
 

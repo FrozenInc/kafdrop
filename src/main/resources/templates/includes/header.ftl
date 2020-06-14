@@ -13,14 +13,14 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<#import "/spring.ftl" as spring />
+<#import "./spring.ftl" as spring />
 
 <div class="pb-2 mt-5 mb-4 border-bottom border-secondary">
     <div class="container">
         <div class="container-fluid pl-0">
             <div id="header-title-line" class="row">
                 <div id="logo" class="col-md-1">
-                    <img alt="logo" height="100%" src="<@spring.url '/images/kafdrop-logo.svg'/>"/>
+                    <img alt="logo" height="100%" src="<@spring.url './images/kafdrop-logo.svg'/>"/>
                 </div>
                 <div id="title" class="col-md-10">
                     <h1 class="app-name brand mb-0">

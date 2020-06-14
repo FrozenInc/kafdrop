@@ -40,7 +40,7 @@ public final class AclController {
     this.kafkaMonitor = kafkaMonitor;
   }
 
-  @RequestMapping("/acl")
+  @RequestMapping("./acl")
   public String acls(Model model) {
     final var acls = kafkaMonitor.getAcls();
     model.addAttribute("acls", acls);
@@ -52,7 +52,7 @@ public final class AclController {
   @ApiResponses(value = {
       @ApiResponse(code = 200, message = "Success", response = String.class, responseContainer = "List")
   })
-  @RequestMapping(path = "/acl", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+  @RequestMapping(path = "./acl", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
   public @ResponseBody List<AclVO> getAllTopics() {
     return kafkaMonitor.getAcls();
   }

@@ -15,7 +15,7 @@ public final class BasicErrorController extends AbstractErrorController {
     super(errorAttributes);
   }
 
-  @RequestMapping("/error")
+  @RequestMapping("./error")
   public ModelAndView handleError(HttpServletRequest request) {
     final var error = getErrorAttributes(request, true);
     System.out.println("errorAtts: " + error);

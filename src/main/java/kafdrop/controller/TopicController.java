@@ -35,7 +35,7 @@ import java.util.*;
  * Handles requests for the topic page.
  */
 @Controller
-@RequestMapping("/topic")
+@RequestMapping("./topic")
 public final class TopicController {
   private static final Logger LOG = LoggerFactory.getLogger(TopicController.class);
   private final KafkaMonitor kafkaMonitor;
@@ -47,7 +47,7 @@ public final class TopicController {
     this.topicDeleteEnabled = topicDeleteEnabled;
   }
 
-  @RequestMapping("/{name:.+}")
+  @RequestMapping("./{name:.+}")
   public String topicDetails(@PathVariable("name") String topicName, Model model) {
     final var topic = kafkaMonitor.getTopic(topicName)
         .orElseThrow(() -> new TopicNotFoundException(topicName));
@@ -58,7 +58,7 @@ public final class TopicController {
     return "topic-detail";
   }
 
-  @RequestMapping(value = "/{name:.+}/delete", method = RequestMethod.POST)
+  @RequestMapping(value = "./{name:.+}/delete", method = RequestMethod.POST)
   public String deleteTopic(@PathVariable("name") String topicName, Model model) {
     if (!topicDeleteEnabled) {
       model.addAttribute("deleteErrorMessage", "Not configured to be deleted.");
@@ -79,7 +79,7 @@ public final class TopicController {
    * @param model
    * @return creation page
    */
-  @RequestMapping("/create")
+  @RequestMapping("./create")
   public String createTopicPage(Model model) {
     model.addAttribute("brokersCount", kafkaMonitor.getBrokers().size());
     return "topic-create";
@@ -90,7 +90,7 @@ public final class TopicController {
       @ApiResponse(code = 200, message = "Success", response = TopicVO.class),
       @ApiResponse(code = 404, message = "Invalid topic name")
   })
-  @RequestMapping(path = "/{name:.+}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+  @RequestMapping(path = "./{name:.+}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
   public @ResponseBody TopicVO getTopic(@PathVariable("name") String topicName) {
     return kafkaMonitor.getTopic(topicName)
         .orElseThrow(() -> new TopicNotFoundException(topicName));
@@ -110,7 +110,7 @@ public final class TopicController {
       @ApiResponse(code = 200, message = "Success", response = String.class, responseContainer = "List"),
       @ApiResponse(code = 404, message = "Invalid topic name")
   })
-  @RequestMapping(path = "/{name:.+}/consumers", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+  @RequestMapping(path = "./{name:.+}/consumers", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
   public @ResponseBody List<ConsumerVO> getConsumers(@PathVariable("name") String topicName) {
     final var topic = kafkaMonitor.getTopic(topicName)
         .orElseThrow(() -> new TopicNotFoundException(topicName));

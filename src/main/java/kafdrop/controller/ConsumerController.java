@@ -27,7 +27,7 @@ import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/consumer")
+@RequestMapping("./consumer")
 public final class ConsumerController {
   private final KafkaMonitor kafkaMonitor;
 
@@ -35,7 +35,7 @@ public final class ConsumerController {
     this.kafkaMonitor = kafkaMonitor;
   }
 
-  @RequestMapping("/{groupId:.+}")
+  @RequestMapping("./{groupId:.+}")
   public String consumerDetail(@PathVariable("groupId") String groupId, Model model) throws ConsumerNotFoundException {
     final var topicVos = kafkaMonitor.getTopics();
     final var consumer = kafkaMonitor.getConsumers(topicVos)
@@ -51,7 +51,7 @@ public final class ConsumerController {
       @ApiResponse(code = 200, message = "Success", response = ConsumerVO.class),
       @ApiResponse(code = 404, message = "Invalid consumer group")
   })
-  @RequestMapping(path = "/{groupId:.+}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+  @RequestMapping(path = "./{groupId:.+}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
   public @ResponseBody ConsumerVO getConsumer(@PathVariable("groupId") String groupId) throws ConsumerNotFoundException {
     final var topicVos = kafkaMonitor.getTopics();
     final var consumer = kafkaMonitor.getConsumers(topicVos)

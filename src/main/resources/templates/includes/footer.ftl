@@ -13,7 +13,7 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<#import "/spring.ftl" as spring />
+<#import "./spring.ftl" as spring />
 <div class="pb-0 mt-5 mb-4">
     <div class="container">
     </div>

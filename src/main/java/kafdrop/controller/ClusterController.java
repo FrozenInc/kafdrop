@@ -57,7 +57,7 @@ public final class ClusterController {
     return new BuildProperties(properties);
   }
 
-  @RequestMapping("/")
+  @RequestMapping("./")
   public String clusterInfo(Model model,
                             @RequestParam(value = "filter", required = false) String filter) {
     model.addAttribute("bootstrapServers", kafkaConfiguration.getBrokerConnect());
@@ -87,7 +87,7 @@ public final class ClusterController {
   @ApiResponses(value = {
       @ApiResponse(code = 200, message = "Success", response = ClusterInfoVO.class)
   })
-  @RequestMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+  @RequestMapping(path = "./", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
   public @ResponseBody ClusterInfoVO getCluster() {
     final var vo = new ClusterInfoVO();
     vo.brokers = kafkaMonitor.getBrokers();
@@ -104,7 +104,7 @@ public final class ClusterController {
   }
 
   @ResponseStatus(HttpStatus.OK)
-  @RequestMapping("/health_check")
+  @RequestMapping("./health_check")
   public void healthCheck() {
   }
 

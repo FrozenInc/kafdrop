@@ -65,7 +65,7 @@ public class SwaggerConfiguration {
   public final class IgnoreDebugPathPredicate implements Predicate<String> {
     @Override
     public boolean apply(String input) {
-      return !input.startsWith("/actuator");
+      return !input.startsWith("./actuator");
     }
   }
 }
